@@ -1,0 +1,9 @@
+.vs
+Dependencies
+Connected Services
+.git
+.github
+obj
+bin
+*.env
+.env
