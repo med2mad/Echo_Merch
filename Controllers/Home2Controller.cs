@@ -2,11 +2,12 @@
 
 namespace Echo_Merch.Controllers
 {
-    public class Home2Controller : Controller
+    public class Home2Controller
     {
-        public string Index(int id)
+        
+        public string Index()
         {
-            return "home2 return = " + id;
+            return "home2 return = ";
         }
     }
 }

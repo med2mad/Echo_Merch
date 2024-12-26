@@ -11,9 +11,10 @@ namespace Echo_Merch.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Route("/rrr")]
+        public string Privacy()
         {
-            return View();
+            return "rrr";
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

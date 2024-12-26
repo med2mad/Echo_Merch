@@ -2,11 +2,19 @@
 
 namespace Echo_Merch.Controllers
 {
-    public class test : Controller
+    [Controller]
+    public class asdasd:Controller
+
     {
-        public string Index()
+        public JsonResult Index()
         {
-            return "test return";
+            return Json("[]");
+        }
+
+        [Route("/tst")]
+        public string tst()
+        {
+            return "tst";
         }
     }
 }

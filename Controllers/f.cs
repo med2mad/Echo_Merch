@@ -6,7 +6,7 @@ namespace Echo_Merch.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Content("");
         }
 
         public IActionResult xxl()
