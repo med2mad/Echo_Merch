@@ -6,13 +6,13 @@ namespace Echo_Merch.Controllers
     {
         public IActionResult Index()
         {
-            return Content("");
+            return Content("fffffffff");
         }
 
         public IActionResult xxl()
         {
-            return View();
-        }
+			return Content("xxl");
+		}
 
     }
 }

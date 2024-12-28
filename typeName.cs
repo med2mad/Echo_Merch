@@ -1,15 +1,19 @@
-﻿namespace Echo_Merch
-{
-    public class typeName
-    {
-        public string zzzzzzzzz { get; set; }
+﻿using System.ComponentModel.DataAnnotations;
 
-        public typeName(string arg2)
-        {
-			zzzzzzzzz = arg2;
-        }
-    }
+namespace Echo_Merch
+{
+	public class typeName
+    {
+		public class typeNamex
+		{
+			public string? x { get; set; }
+		}
+
+		[Required]
+		public string a { get; set; }
+        public string? b { get; set; }
+		public typeNamex? xx { get; set; }
+	}
 }
 
 
-        

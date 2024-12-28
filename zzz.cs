@@ -4,23 +4,32 @@ namespace Echo_Merch
 {
     public class zzz:Controller
     {
-        public IActionResult index()
+        public string index()
         {
-            return View();
+            return "View()";
         }
         public IActionResult index1()
         {
             return View();
         }
-		[Route("/")]
+
 		public IActionResult zzzz()
 		{
-            
-            return View();
+			typeName model = new typeName();
+			return View(model);
 		}
-		public IActionResult rrr()
+		[HttpPost]
+		public IActionResult zzzz(typeName model)
 		{
-			return View();
+			// Model binding populates 'model' from the form submission
+			return View(model);
+		}
+		[HttpPost]
+		public string rrr(string a, string b)
+		{
+			string x = "zzz";
+			return Request.Form["a"] + Request.Form["b"];
+
 		}
 	}
 }

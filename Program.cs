@@ -9,7 +9,8 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+app.UseStaticFiles();
 
-app.MapControllerRoute("name", "{controller=asdasd}/{action=qweq}");
+app.MapControllerRoute("sdf", "{controller=zzz}/{action=zzzz}");
 
 app.Run();

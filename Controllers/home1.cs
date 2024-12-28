@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Echo_Merch.Controllers
 {
-    public class home1 : Controller
+    public class home : Controller
     {
         public IActionResult Index()
         {
