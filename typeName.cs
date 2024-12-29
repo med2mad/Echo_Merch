@@ -4,15 +4,12 @@ namespace Echo_Merch
 {
 	public class typeName
     {
-		public class typeNamex
-		{
-			public string? x { get; set; }
-		}
 
-		[Required]
+		[Required( AllowEmptyStrings = true, ErrorMessage = "retard")]
+		[StringLength(5,MinimumLength =3)]
 		public string a { get; set; }
-        public string? b { get; set; }
-		public typeNamex? xx { get; set; }
+        public int b { get; set; }
+
 	}
 }
 

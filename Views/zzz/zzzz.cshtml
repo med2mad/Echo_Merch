@@ -3,12 +3,11 @@
 	// List<typeName> x = new List<typeName>() { new typeName("abc zfdsdfs") };
 }
 <form asp-controller="zzz" asp-action="zzzz" method="post">
-	<input asp-for="a" />
-	<input asp-for="b" />
+	<div asp-validation-summary="All" class="alert-danger"></div>
+	<input asp-for="a" /> <br />
+	<input asp-for="b" />  <br />
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <h1>@Model.a</h1>
 <h1>@Model.b</h1>
 @* <h1>@x.FirstOrDefault().zzzzzzzzz</h1> *@
-
-@section Scripts{ <partial name="_ValidationScriptsPartial" /> }
