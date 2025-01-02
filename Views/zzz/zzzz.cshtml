@@ -1,13 +1,13 @@
-﻿@model Echo_Merch.typeName
+﻿
 @{
 	// List<typeName> x = new List<typeName>() { new typeName("abc zfdsdfs") };
 }
 <form asp-controller="zzz" asp-action="zzzz" method="post">
 	<div asp-validation-summary="All" class="alert-danger"></div>
-	<input asp-for="a" /> <br />
-	<input asp-for="b" />  <br />
+	<input name="a" /> <br />
+	<input name="b" />  <br />
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<h1>@Model.a</h1>
-<h1>@Model.b</h1>
+@* <h1>@Model.a</h1>
+<h1>@Model.b</h1> *@
 @* <h1>@x.FirstOrDefault().zzzzzzzzz</h1> *@

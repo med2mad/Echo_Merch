@@ -14,15 +14,17 @@ namespace Echo_Merch
 		}
 
 		public IActionResult zzzz(){
-			typeName model = new typeName();
-			return View(model);
+			
+			return View();
 		}
 		[HttpPost]
 		public IActionResult zzzz(typeName model)
 		{
-			Console.WriteLine(ModelState);
-			// Model binding populates 'model' from the form submission
-			return View(model);
+			if (ModelState.IsValid)
+			{
+                return Content("Well done !");
+            }
+			return NotFound();
 		}
 		[HttpPost]
 		public string rrr(string a, string b)
