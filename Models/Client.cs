@@ -1,8 +1,8 @@
 ﻿namespace Echo_Merch.Models
 {
-	public class Class
+	public class Client
 	{
 		public int Id { get; set; }
-		public string ?Name { get; set; }
+		public string? clientName { get; set; }
 	}
 }

@@ -1,9 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.Data.SqlClient;
+using System;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
+using Echo_Merch.Data;
+using Echo_Merch.Models;
 
 namespace Echo_Merch
 {
-	public class zzz : Controller
+	public class Zzz(IConfiguration configuration) : Controller
 	{
+		private readonly string? _connectionString = configuration.GetConnectionString("DefaultConnection");
+
 		public string index()
 		{
 			return "View()";
@@ -13,10 +21,17 @@ namespace Echo_Merch
 			return View();
 		}
 
-		public IActionResult zzzz(){
-			
-			return View();
+		public string zzzz(){
+
+			var context = new ModelContextTest();
+
+			context.Database.EnsureDeleted();
+			context.Database.EnsureCreated();
+
+
+			return $"";
 		}
+
 		[HttpPost]
 		public IActionResult zzzz(typeName model)
 		{
