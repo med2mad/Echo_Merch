@@ -1,8 +1,9 @@
 ﻿namespace Echo_Merch.Models
 {
-	public class product
+	public class Product
 	{
 		public int Id { get; set; }
-		public string? Name { get; set; }
+
+		public string ProductTitle { get; set; }
 	}
 }

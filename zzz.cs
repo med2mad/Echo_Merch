@@ -5,13 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Configuration;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Echo_Merch
 {
 	public class Zzz(IConfiguration configuration) : Controller
 	{
-		private readonly string? _connectionString = configuration.GetConnectionString("DefaultConnection");
-
 		public string index()
 		{
 			return "View()";
@@ -22,14 +21,23 @@ namespace Echo_Merch
 		}
 
 		public string zzzz(){
+			var context = new ApplicationDbContext();
 
-			var context = new ModelContextTest();
+			//var client = new Client { Name = "11", Description = "111" };
+			var client = context.Clients.Find(3);
+			//context.Clients.Attach(client);
+			//context.Entry(client).State = EntityState.Modified;
+			client.Name = "adasd";
+			//context.Clients.Add(client);
+			context.Clients.Update(client);
+			//context.Clients.Remove(client);
 
-			context.Database.EnsureDeleted();
-			context.Database.EnsureCreated();
+			context.SaveChanges();
 
+			//context.Database.EnsureDeleted();
+			//context.Database.EnsureCreated();
 
-			return $"";
+			return $"wwwwwwww";
 		}
 
 		[HttpPost]
