@@ -2,13 +2,13 @@
 
 namespace Echo_Merch
 {
-    public class item:Controller
-    {
+	public class item : Controller
+	{
 
-        public string index()
-        {
-            return "item file";
-        }
+		public string index()
+		{
+			return "item file";
+		}
 
-    }
+	}
 }

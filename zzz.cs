@@ -1,11 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Data;
+﻿using Echo_Merch.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Configuration;
-using Echo_Merch.Data;
-using Echo_Merch.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Echo_Merch
 {
@@ -20,22 +14,23 @@ namespace Echo_Merch
 			return View();
 		}
 
-		public string zzzz(){
+		public string zzzz()
+		{
 			var context = new ApplicationDbContext();
+			//var x = context.Clients.ToList();
+			//var x = context.Clients.Where(r => true);
+			int[] x = [3, 4, 5];
+			var xx = from aa in x where true select aa * 10;
 
-			//var client = new Client { Name = "11", Description = "111" };
-			var client = context.Clients.Find(3);
-			//context.Clients.Attach(client);
-			//context.Entry(client).State = EntityState.Modified;
-			client.Name = "adasd";
-			//context.Clients.Add(client);
-			context.Clients.Update(client);
-			//context.Clients.Remove(client);
 
-			context.SaveChanges();
+			foreach (var z in xx)
+			{
+				Console.WriteLine(z);
+			}
 
 			//context.Database.EnsureDeleted();
 			//context.Database.EnsureCreated();
+
 
 			return $"wwwwwwww";
 		}
@@ -45,8 +40,8 @@ namespace Echo_Merch
 		{
 			if (ModelState.IsValid)
 			{
-                return Content("Well done !");
-            }
+				return Content("Well done !");
+			}
 			return NotFound();
 		}
 		[HttpPost]

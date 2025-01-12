@@ -2,17 +2,17 @@
 
 namespace Echo_Merch.Controllers
 {
-    public class f : Controller
-    {
-        public IActionResult Index()
-        {
-            return Content("fffffffff");
-        }
+	public class f : Controller
+	{
+		public IActionResult Index()
+		{
+			return Content("fffffffff");
+		}
 
-        public IActionResult xxl()
-        {
+		public IActionResult xxl()
+		{
 			return Content("xxl");
 		}
 
-    }
+	}
 }

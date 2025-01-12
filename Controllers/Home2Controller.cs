@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Echo_Merch.Controllers
+﻿namespace Echo_Merch.Controllers
 {
-    public class Home2Controller
-    {
-        
-        public string Index()
-        {
-            return "home2 return = ";
-        }
-    }
+	public class Home2Controller
+	{
+
+		public string Index()
+		{
+			return "home2 return = ";
+		}
+	}
 }
