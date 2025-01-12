@@ -5,8 +5,8 @@ namespace Echo_Merch.Data
 {
 	public class ApplicationDbContext : DbContext
 	{
-		public DbSet<Client> Clients { get; set; }
-		public DbSet<Product> Products { get; set; }
+		public DbSet<Client> czzz { get; set; }
+		public DbSet<Product> pzzz { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

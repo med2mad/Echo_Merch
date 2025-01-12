@@ -17,15 +17,14 @@ namespace Echo_Merch
 		public string zzzz()
 		{
 			var context = new ApplicationDbContext();
-			//var x = context.Clients.ToList();
-			//var x = context.Clients.Where(r => true);
-			int[] x = [3, 4, 5];
-			var xx = from aa in x where true select aa * 10;
+			var x = context.czzz.ToList();
+			//int[] x = { 0, 1, 2, 3 };
 
 
-			foreach (var z in xx)
+
+			foreach (var z in x)
 			{
-				Console.WriteLine(z);
+				Console.WriteLine(x);
 			}
 
 			//context.Database.EnsureDeleted();
