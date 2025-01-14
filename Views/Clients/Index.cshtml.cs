@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
 
-namespace Echo_Merch.Views
+namespace Echo_Merch.Views.Clients
 {
     public class IndexModel : PageModel
     {
