@@ -11,6 +11,6 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.MapControllerRoute("sdf", "{controller=zzz}/{action=zzzz}");
+app.MapControllerRoute("default", "{controller=home1}/{action=index}");
 
 app.Run();
