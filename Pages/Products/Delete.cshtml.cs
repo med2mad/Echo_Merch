@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
 
-namespace Echo_Merch.Views.Clients
+namespace Echo_Merch.Pages.Products
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Echo_Merch.Views.Clients
         }
 
         [BindProperty]
-        public Client Client { get; set; } = default!;
+        public Product Product { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace Echo_Merch.Views.Clients
                 return NotFound();
             }
 
-            var client = await _context.Clients.FirstOrDefaultAsync(m => m.clientid == id);
+            var product = await _context.Product.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (client == null)
+            if (product == null)
             {
                 return NotFound();
             }
             else
             {
-                Client = client;
+                Product = product;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace Echo_Merch.Views.Clients
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(id);
-            if (client != null)
+            var product = await _context.Product.FindAsync(id);
+            if (product != null)
             {
-                Client = client;
-                _context.Clients.Remove(Client);
+                Product = product;
+                _context.Product.Remove(Product);
                 await _context.SaveChangesAsync();
             }
 

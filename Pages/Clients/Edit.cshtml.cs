@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
 
-namespace Echo_Merch.Views.Clients
+namespace Echo_Merch.Pages.Clients
 {
     public class EditModel : PageModel
     {
-        private readonly Echo_Merch.Data.ApplicationDbContext _context;
+        private readonly Echo_Merch.Data.Echo_MerchContext _context;
 
-        public EditModel(Echo_Merch.Data.ApplicationDbContext context)
+        public EditModel(Echo_Merch.Data.Echo_MerchContext context)
         {
             _context = context;
         }
@@ -30,7 +30,7 @@ namespace Echo_Merch.Views.Clients
                 return NotFound();
             }
 
-            var client =  await _context.Clients.FirstOrDefaultAsync(m => m.clientid == id);
+            var client =  await _context.Client.FirstOrDefaultAsync(m => m.clientid == id);
             if (client == null)
             {
                 return NotFound();
@@ -71,7 +71,7 @@ namespace Echo_Merch.Views.Clients
 
         private bool ClientExists(int id)
         {
-            return _context.Clients.Any(e => e.clientid == id);
+            return _context.Client.Any(e => e.clientid == id);
         }
     }
 }

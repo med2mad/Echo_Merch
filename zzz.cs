@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Echo_Merch;
 
-public class Zzz(IConfiguration configuration) : Controller
+public class Clients(IConfiguration configuration) : Controller
 {
-	public string index()
-	{
-		return "View()";
-	}
-	public IActionResult index1()
+	public IActionResult index()
 	{
 		return View();
 	}

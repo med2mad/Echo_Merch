@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
 
-namespace Echo_Merch.Views.Clients
+namespace Echo_Merch.Pages.Products
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Echo_Merch.Views.Clients
         }
 
         [BindProperty]
-        public Client Client { get; set; } = default!;
+        public Product Product { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace Echo_Merch.Views.Clients
                 return Page();
             }
 
-            _context.Clients.Add(Client);
+            _context.Product.Add(Product);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

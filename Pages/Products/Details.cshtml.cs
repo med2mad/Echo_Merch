@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
 
-namespace Echo_Merch.Views.Clients
+namespace Echo_Merch.Pages.Products
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Echo_Merch.Views.Clients
             _context = context;
         }
 
-        public Client Client { get; set; } = default!;
+        public Product Product { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +28,14 @@ namespace Echo_Merch.Views.Clients
                 return NotFound();
             }
 
-            var client = await _context.Clients.FirstOrDefaultAsync(m => m.clientid == id);
-            if (client == null)
+            var product = await _context.Product.FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
             {
                 return NotFound();
             }
             else
             {
-                Client = client;
+                Product = product;
             }
             return Page();
         }

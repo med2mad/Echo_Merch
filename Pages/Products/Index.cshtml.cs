@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
 
-namespace Echo_Merch.Views.Clients
+namespace Echo_Merch.Pages.Products
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace Echo_Merch.Views.Clients
             _context = context;
         }
 
-        public IList<Client> Client { get;set; } = default!;
+        public IList<Product> Product { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Client = await _context.Clients.ToListAsync();
+            Product = await _context.Product.ToListAsync();
         }
     }
 }
