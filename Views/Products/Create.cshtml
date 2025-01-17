@@ -1,5 +1,4 @@
-﻿@page
-@model Echo_Merch.Pages.Products.CreateModel
+﻿@model Echo_Merch.Models.Product
 
 @{
     ViewData["Title"] = "Create";
@@ -11,12 +10,12 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Product.ProductTitle" class="control-label"></label>
-                <input asp-for="Product.ProductTitle" class="form-control" />
-                <span asp-validation-for="Product.ProductTitle" class="text-danger"></span>
+                <label asp-for="ProductTitle" class="control-label"></label>
+                <input asp-for="ProductTitle" class="form-control" />
+                <span asp-validation-for="ProductTitle" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -26,6 +25,6 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 

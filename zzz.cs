@@ -1,9 +1,8 @@
-﻿using Echo_Merch.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Echo_Merch;
 
-public class Clients(IConfiguration configuration) : Controller
+public class zzz(IConfiguration configuration) : Controller
 {
 	public IActionResult index()
 	{
@@ -12,19 +11,6 @@ public class Clients(IConfiguration configuration) : Controller
 
 	public string zzzz()
 	{
-		var context = new ApplicationDbContext();
-		var x = context.Clients;
-		//int[] x = { 0, 1, 2, 3 };
-
-
-
-		foreach (var z in x)
-		{
-			Console.WriteLine(x);
-		}
-
-		//context.Database.EnsureDeleted();
-		//context.Database.EnsureCreated();
 
 
 		return $"wwwwwwww";

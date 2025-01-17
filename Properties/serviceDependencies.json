@@ -7,6 +7,14 @@
     "mssql2": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:Echo_MerchContext"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:myContext"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:dataContext"
     }
   }
 }

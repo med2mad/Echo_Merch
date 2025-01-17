@@ -1,21 +1,20 @@
-using Echo_Merch.Data;
+﻿using Echo_Merch.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<Echo_MerchContext>(options =>
-	options.UseSqlServer(builder.Configuration.GetConnectionString("Echo_MerchContext") ?? throw new InvalidOperationException("Connection string 'Echo_MerchContext' not found.")));
+builder.Services.AddDbContext<dataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("dataContext") ?? throw new InvalidOperationException("Connection string 'dataContext' not found.")));
 
 builder.Services.AddControllersWithViews();
-//builder.Services.AddControllers();
+
 var app = builder.Build();
-
-app.MapRazorPages();
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Home/Error");
 }
-app.UseStaticFiles();
 
+//app.UseRouting();
+//builder.Services.AddControllers();
+app.MapControllerRoute(name: "default", pattern: "{controller=Clients}/{action=index}");
 
 app.Run();
