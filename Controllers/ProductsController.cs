@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace Echo_Merch.Controllers
 {
-
-    public class ProductsController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase
     {
         private readonly dataContext _context;
 
@@ -22,9 +23,9 @@ namespace Echo_Merch.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public IActionResult GetProduct()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
         {
-            return View(_context.Clients.ToListAsync());
+            return await _context.Product.ToListAsync();
         }
 
         // GET: api/Products/5
