@@ -17,7 +17,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 //app.UseRouting();
-app.MapControllers();
-//app.MapControllerRoute(name: "default", pattern: "{controller=Clients}/{action=adfsdfsdf}");
+//app.MapControllers();
+app.MapControllerRoute(name: "default", pattern: "{controller=Clients}/{action=adfsdfsdf}");
 
 app.Run();

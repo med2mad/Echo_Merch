@@ -7,39 +7,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Echo_Merch.Controllers;
 
-
-[Route("/clients")]
-
+[Route("clients")]
 public class ClientsController() : Controller
 {
 
+    [HttpGet]
     public string Index()
     {
-        return "index";
-    }
-
-    [HttpGet("/{x}")]
-    public string Details(string x)
-    {
-        return $"Details {x}";
+        return "indexsssss";
     }
 
     [HttpPost]
     //[ValidateAntiForgeryToken]
-    public string Create([FromBody] Client client)
+    public Client Create([FromBody] Client client)
     {
-        Console.WriteLine($"clientid {client.clientid}, Name {client.Name}, Description {client.Description}");
-        return System.Text.Json.JsonSerializer.Serialize(client);
+        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(client));
+        return client;
     }
 
-    [HttpPost("2")]
-    [ValidateAntiForgeryToken]
-    public string Edit(int id, Client client)
+    [HttpPost("edit/{id}")]
+    //[ValidateAntiForgeryToken]
+    public Client Edit([FromQuery] int q, [FromRoute] int id, [FromForm] Client client)
     {
-        Console.WriteLine($"clientid {client.clientid}, Name {client.Name}, Description {client.Description}");
-        return $"clientid {client.clientid}, Name {client.Name}, Description {client.Description}";
+        Console.WriteLine($"q {q}, id {id}, clientid {client.clientid}, Name {client.Name}, Description {client.Description}");
+        return client;
     }
 }
