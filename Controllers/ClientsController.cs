@@ -14,29 +14,29 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Echo_Merch.Controllers;
 
 //[ApiController]
+//[Route("clients/{r?}")]
 public class ClientsController() : Controller
 {
-    //public IActionResult asd([FromQuery] int q, [FromRoute] int id, [FromForm] string name, [FromBody] Client client) ////[ValidateAntiForgeryToken]
+    //public IActionResult asd([FromQuery] int q, [FromRoute] int r, [FromForm] string name, [FromBody] Client client) ////[ValidateAntiForgeryToken]
     //{
-    //    Console.WriteLine(new { action = "asd", id, name, client, q });
-    //    return Json(new { action = "asd", id, name, client, q });
+    //    Console.WriteLine(new { action = "asd", r, name, client, q });
+    //    return Json(new { action = "asd", r, name, client, q });
     //}
 
     //public IActionResult create()
     //{ return View(); }
 
     [HttpPost]
-    [Route("/clients/{r?}")]
-    public IActionResult post(int q, int r, int number, string? text, [FromBody] Client client)
+    public IActionResult post(string Q, int R, string text, string title, Client client, int number)
     {
         if (!ModelState.IsValid)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-            return BadRequest(errors);
+            return Json(errors);
         }
 
-        Console.WriteLine(new { q, r, number, text, client });
-        return Json(new { q, r, number = Request.Form["number"], text = Request.Form["text"], client = Request.Form["client"] });
+        Console.WriteLine(text + number + title);
+        return Json(new { Q, R, number, text, title, client });
     }
 
     //public IActionResult Edit(int q, int r, int number, string text, Client client)

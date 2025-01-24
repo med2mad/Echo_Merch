@@ -9,8 +9,8 @@ namespace Echo_Merch.Models
         public int age { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; }
 
-        public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; }
     }
 }
