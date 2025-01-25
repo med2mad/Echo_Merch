@@ -14,7 +14,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Echo_Merch.Controllers;
 
 //[ApiController]
-//[Route("clients/{r?}")]
+[Route("clients/{r?}")]
 public class ClientsController() : Controller
 {
     //public IActionResult asd([FromQuery] int q, [FromRoute] int r, [FromForm] string name, [FromBody] Client client) ////[ValidateAntiForgeryToken]
@@ -27,16 +27,16 @@ public class ClientsController() : Controller
     //{ return View(); }
 
     [HttpPost]
-    public IActionResult post(string Q, int R, string text, string title, Client client, int number)
+    public IActionResult post(string Q, int R, int number, int? age, string text, string? title, Client client)
     {
-        if (!ModelState.IsValid)
-        {
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-            return Json(errors);
-        }
+        //if (!ModelState.IsValid)
+        //{
+        //    var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+        //    return Ok(errors);
+        //}
 
         Console.WriteLine(text + number + title);
-        return Json(new { Q, R, number, text, title, client });
+        return Json(new { Q, R, number, age, text, title, client });
     }
 
     //public IActionResult Edit(int q, int r, int number, string text, Client client)
