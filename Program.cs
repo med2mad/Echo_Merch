@@ -21,6 +21,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseRouting();
 app.MapControllers();
-app.MapControllerRoute(name: "zzzzzzzzz", pattern: "{controller=Clients}/{action=index}/{r?}");
+app.MapControllerRoute(name: "zzzzzzzzz", pattern: "{controller=zzz}/{action=zzzz}/{r?}");
 
 app.Run();

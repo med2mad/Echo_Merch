@@ -1,13 +1,17 @@
-﻿
+﻿@model Echo_Merch.Models.Client
 @{
 	// List<typeName> x = new List<typeName>() { new typeName("abc zfdsdfs") };
 }
-<form asp-controller="zzz" asp-action="zzzz" method="post">
+<form action="zzz/zzzz/55?1=44" method="post">
 	<div asp-validation-summary="All" class="alert-danger"></div>
-	<input name="a" /> <br />
-	<input name="b" />  <br />
+	number <input name="number" value="9" /> <br />
+	text <input name="text" value="text9" />  <br />
+	age <input name="age" value="99" /> <br />
+	name <input name="name" value="name99" />  <br />
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-@* <h1>@Model.a</h1>
-<h1>@Model.b</h1> *@
+
+<h1>text : text</h1>
+<h1>q : q</h1>
+<h1>r : r</h1>
 @* <h1>@x.FirstOrDefault().zzzzzzzzz</h1> *@

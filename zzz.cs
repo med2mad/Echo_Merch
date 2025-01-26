@@ -1,29 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Echo_Merch.Models;
+using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Echo_Merch;
 
 public class zzz(IConfiguration configuration) : Controller
 {
-	public IActionResult index()
+	public IActionResult index1()
 	{
 		return View();
 	}
 
-	public string zzzz()
+	public IActionResult zzzz()
 	{
 
 
-		return $"wwwwwwww";
+		return View();
 	}
 
 	[HttpPost]
-	public IActionResult zzzz(typeName model)
+	public IActionResult zzzz(int? Q, string? R, string number, int age, string text, string name, Client client)
 	{
-		if (ModelState.IsValid)
+		if (!ModelState.IsValid)
 		{
-			return Content("Well done !");
+			var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+			return Ok(new { Q, R, number, age, text, name, client, errors });
 		}
-		return NotFound();
+		return View(client);
 	}
 	[HttpPost]
 	public string rrr(string a, string b)
