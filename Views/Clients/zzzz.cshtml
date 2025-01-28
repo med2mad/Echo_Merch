@@ -1,0 +1,30 @@
+﻿@model Echo_Merch.Models.Client
+
+<form action="/Clients/zzzz/" method="post">
+	<div asp-validation-summary="All" class="alert-danger"></div>
+	number <input name="number" value="9" /> <br />
+	text <input name="text" value="text9" />  <br />
+	age <input name="age" value="99" /> <br />
+	name <input name="name" value="name99" />  <br />
+	description <input name="description" value="desc99" />  <br />
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br />
+@if (Model != null)
+{
+	@if (ViewBag.Errors != null && ((List<string>)ViewBag.Errors).Any())
+	{
+		@foreach (var x in ViewBag.errors)
+		{
+			<div style="color:red">@x</div>
+		}
+	}
+
+	<h2>Client age : @Model.age</h2>
+	<h2>Client name : @Model.Name</h2>
+	<h2>Client description : @Model.Description</h2>
+	<h2>number : @ViewBag.number</h2>
+	<h2>q : @ViewBag.Q</h2>
+	<h2>r : @ViewBag.R</h2>
+	<h2>text : @ViewBag.text</h2>
+}

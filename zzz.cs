@@ -1,8 +1,8 @@
 ﻿using Echo_Merch.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-
 namespace Echo_Merch;
 
 public class zzz(IConfiguration configuration) : Controller
@@ -14,21 +14,24 @@ public class zzz(IConfiguration configuration) : Controller
 
 	public IActionResult zzzz()
 	{
-
-
 		return View();
 	}
 
 	[HttpPost]
-	public IActionResult zzzz(int? Q, string? R, string number, int age, string text, string name, Client client)
+	public IActionResult zzzz(int Q, int R, int number, string text, Client client)
 	{
+		ViewBag.Q = Q;
+		ViewBag.R = R;
+		ViewBag.number = number;
+		ViewBag.text = text;
 		if (!ModelState.IsValid)
 		{
-			var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-			return Ok(new { Q, R, number, age, text, name, client, errors });
+			ViewBag.errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+			return View(client);
 		}
 		return View(client);
 	}
+
 	[HttpPost]
 	public string rrr(string a, string b)
 	{
