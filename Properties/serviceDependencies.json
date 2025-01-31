@@ -15,6 +15,10 @@
     "mssql4": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:dataContext"
+    },
+    "mssql5": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:ContextMerch"
     }
   }
 }
