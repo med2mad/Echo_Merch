@@ -21,7 +21,7 @@ namespace Echo_Merch.Controllers
         // GET: Table1
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Table1.ToListAsync());
+            return View(await _context.Table1.Include(t => t.Table1_).ToListAsync());
         }
 
         // GET: Table1/Details/5

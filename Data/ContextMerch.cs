@@ -14,5 +14,5 @@ public class ContextMerch : DbContext
 
     public DbSet<Echo_Merch.Models.Table1> Table1 { get; set; } = default!;
 
-    public DbSet<Echo_Merch.Models.Table2> Table2 { get; set; } = default!;
+    public DbSet<Echo_Merch.Models.Table1_> Table1_ { get; set; } = default!;
 }

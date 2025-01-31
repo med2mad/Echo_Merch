@@ -29,7 +29,7 @@ namespace Echo_Merch.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Table2Id")
+                    b.Property<int?>("Table1_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -38,12 +38,12 @@ namespace Echo_Merch.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Table2Id");
+                    b.HasIndex("Table1_Id");
 
                     b.ToTable("Table1");
                 });
 
-            modelBuilder.Entity("Echo_Merch.Models.Table2", b =>
+            modelBuilder.Entity("Echo_Merch.Models.Table1_", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,16 +57,19 @@ namespace Echo_Merch.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Table2");
+                    b.ToTable("Table1_");
                 });
 
             modelBuilder.Entity("Echo_Merch.Models.Table1", b =>
                 {
-                    b.HasOne("Echo_Merch.Models.Table2", "Table2")
-                        .WithMany()
-                        .HasForeignKey("Table2Id");
+                    b.HasOne("Echo_Merch.Models.Table1_", null)
+                        .WithMany("Table1")
+                        .HasForeignKey("Table1_Id");
+                });
 
-                    b.Navigation("Table2");
+            modelBuilder.Entity("Echo_Merch.Models.Table1_", b =>
+                {
+                    b.Navigation("Table1");
                 });
 #pragma warning restore 612, 618
         }

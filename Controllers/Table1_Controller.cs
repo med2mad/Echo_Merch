@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Echo_Merch.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Echo_Merch.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Echo_Merch.Controllers
 {
-    public class Table2Controller : Controller
+    public class Table1_Controller : Controller
     {
         private readonly ContextMerch _context;
 
-        public Table2Controller(ContextMerch context)
+        public Table1_Controller(ContextMerch context)
         {
             _context = context;
         }
 
-        // GET: Table2
+        // GET: Table1_
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Table2.ToListAsync());
+            return View(await _context.Table1_.Include(t => t.Table1).ToListAsync());
         }
 
-        // GET: Table2/Details/5
+        // GET: Table1_/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Echo_Merch.Controllers
                 return NotFound();
             }
 
-            var table2 = await _context.Table2
+            var table1_ = await _context.Table1_
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (table2 == null)
+            if (table1_ == null)
             {
                 return NotFound();
             }
 
-            return View(table2);
+            return View(table1_);
         }
 
-        // GET: Table2/Create
+        // GET: Table1_/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Table2/Create
+        // POST: Table1_/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Value")] Table2 table2)
+        public async Task<IActionResult> Create([Bind("Id,Value")] Table1_ table1_)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(table2);
+                _context.Add(table1_);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(table2);
+            return View(table1_);
         }
 
-        // GET: Table2/Edit/5
+        // GET: Table1_/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Echo_Merch.Controllers
                 return NotFound();
             }
 
-            var table2 = await _context.Table2.FindAsync(id);
-            if (table2 == null)
+            var table1_ = await _context.Table1_.FindAsync(id);
+            if (table1_ == null)
             {
                 return NotFound();
             }
-            return View(table2);
+            return View(table1_);
         }
 
-        // POST: Table2/Edit/5
+        // POST: Table1_/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Value")] Table2 table2)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Value")] Table1_ table1_)
         {
-            if (id != table2.Id)
+            if (id != table1_.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Echo_Merch.Controllers
             {
                 try
                 {
-                    _context.Update(table2);
+                    _context.Update(table1_);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Table2Exists(table2.Id))
+                    if (!Table1_Exists(table1_.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Echo_Merch.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(table2);
+            return View(table1_);
         }
 
-        // GET: Table2/Delete/5
+        // GET: Table1_/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +123,34 @@ namespace Echo_Merch.Controllers
                 return NotFound();
             }
 
-            var table2 = await _context.Table2
+            var table1_ = await _context.Table1_
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (table2 == null)
+            if (table1_ == null)
             {
                 return NotFound();
             }
 
-            return View(table2);
+            return View(table1_);
         }
 
-        // POST: Table2/Delete/5
+        // POST: Table1_/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var table2 = await _context.Table2.FindAsync(id);
-            if (table2 != null)
+            var table1_ = await _context.Table1_.FindAsync(id);
+            if (table1_ != null)
             {
-                _context.Table2.Remove(table2);
+                _context.Table1_.Remove(table1_);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool Table2Exists(int id)
+        private bool Table1_Exists(int id)
         {
-            return _context.Table2.Any(e => e.Id == id);
+            return _context.Table1_.Any(e => e.Id == id);
         }
     }
 }
