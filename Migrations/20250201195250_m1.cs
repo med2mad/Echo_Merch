@@ -11,7 +11,7 @@ namespace Echo_Merch.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Table1_",
+                name: "Table2",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace Echo_Merch.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Table1_", x => x.Id);
+                    table.PrimaryKey("PK_Table2", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,22 +30,23 @@ namespace Echo_Merch.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Table1_Id = table.Column<int>(type: "int", nullable: true)
+                    Table2Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Table1", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Table1_Table1__Table1_Id",
-                        column: x => x.Table1_Id,
-                        principalTable: "Table1_",
-                        principalColumn: "Id");
+                        name: "FK_Table1_Table2_Table2Id",
+                        column: x => x.Table2Id,
+                        principalTable: "Table2",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Table1_Table1_Id",
+                name: "IX_Table1_Table2Id",
                 table: "Table1",
-                column: "Table1_Id");
+                column: "Table2Id");
         }
 
         /// <inheritdoc />
@@ -55,7 +56,7 @@ namespace Echo_Merch.Migrations
                 name: "Table1");
 
             migrationBuilder.DropTable(
-                name: "Table1_");
+                name: "Table2");
         }
     }
 }

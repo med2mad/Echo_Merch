@@ -2,10 +2,9 @@
 
 namespace Echo_Merch.Models;
 
-public class Table1
+public class Table2
 {
     public int Id { get; set; }
     public string Value { get; set; }
 
-    public Table2 Table2 { get; set; }
 }

@@ -1,11 +1,11 @@
-﻿using Echo_Merch.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Echo_Merch.Models;
 
 namespace Echo_Merch.Controllers
 {
@@ -21,7 +21,7 @@ namespace Echo_Merch.Controllers
         // GET: Table1
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Table1.Include(t => t.Table1_).ToListAsync());
+            return View(await _context.Table1.ToListAsync());
         }
 
         // GET: Table1/Details/5

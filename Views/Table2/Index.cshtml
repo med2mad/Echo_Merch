@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Echo_Merch.Models.Table1_>
+﻿@model IEnumerable<Echo_Merch.Models.Table2>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,9 +15,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Value)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Table1)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -26,9 +23,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Value)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Table1)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
