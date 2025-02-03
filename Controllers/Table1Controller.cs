@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Echo_Merch.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Echo_Merch.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Echo_Merch.Controllers
 {
@@ -21,7 +21,7 @@ namespace Echo_Merch.Controllers
         // GET: Table1
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Table1.ToListAsync());
+            return View(await _context.Table1.Include(t => t.Child_Row).ToListAsync());
         }
 
         // GET: Table1/Details/5
@@ -53,7 +53,7 @@ namespace Echo_Merch.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Value")] Table1 table1)
+        public async Task<IActionResult> Create([Bind("Id,parent_value")] Table1 table1)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Echo_Merch.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Value")] Table1 table1)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,parent_value")] Table1 table1)
         {
             if (id != table1.Id)
             {

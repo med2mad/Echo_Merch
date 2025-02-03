@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Echo_Merch.Migrations
 {
     [DbContext(typeof(ContextMerch))]
-    [Migration("20250201195250_m1")]
+    [Migration("20250203164908_m1")]
     partial class m1
     {
         /// <inheritdoc />
@@ -31,16 +31,16 @@ namespace Echo_Merch.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Table2Id")
+                    b.Property<int>("Table1")
                         .HasColumnType("int");
 
-                    b.Property<string>("Value")
+                    b.Property<string>("parent_value")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Table2Id");
+                    b.HasIndex("Table1");
 
                     b.ToTable("Table1");
                 });
@@ -53,7 +53,7 @@ namespace Echo_Merch.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Value")
+                    b.Property<string>("child_value")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -62,15 +62,49 @@ namespace Echo_Merch.Migrations
                     b.ToTable("Table2");
                 });
 
+            modelBuilder.Entity("Echo_Merch.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Echo_Merch.Models.Table1", b =>
                 {
-                    b.HasOne("Echo_Merch.Models.Table2", "Table2")
-                        .WithMany()
-                        .HasForeignKey("Table2Id")
+                    b.HasOne("Echo_Merch.Models.Table2", "Child_Row")
+                        .WithMany("Parents_Collection")
+                        .HasForeignKey("Table1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Table2");
+                    b.Navigation("Child_Row");
+                });
+
+            modelBuilder.Entity("Echo_Merch.Models.Table2", b =>
+                {
+                    b.Navigation("Parents_Collection");
                 });
 #pragma warning restore 612, 618
         }

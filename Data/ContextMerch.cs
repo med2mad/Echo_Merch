@@ -1,4 +1,5 @@
 ﻿using Echo_Merch.Models;
+using Echo_Merch.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,4 +16,7 @@ public class ContextMerch : DbContext
     public DbSet<Echo_Merch.Models.Table1> Table1 { get; set; } = default!;
 
     public DbSet<Echo_Merch.Models.Table2> Table2 { get; set; } = default!;
+
+    public DbSet<Echo_Merch.Models.User> Users { get; set; } = default!;
+
 }
