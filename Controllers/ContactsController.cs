@@ -2,29 +2,36 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Versioning;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Threading.Tasks;
 
 namespace Echo_Merch.Controllers
 {
-    public class Table2Controller : Controller
+    public class ContactsController : Controller
     {
         private readonly ContextMerch _context;
 
-        public Table2Controller(ContextMerch context)
+        public ContactsController(ContextMerch context)
         {
             _context = context;
         }
 
-        // GET: Table2
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Table2.Include(t => t.Parents_Collection).ToListAsync());
+            var x = _context.Contacts.Include(c => c.User);
+            return Ok(System.Text.Json.JsonSerializer.Serialize(x, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
         }
 
-        // GET: Table2/Details/5
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Contacts.Include(c => c.User).Select(c => new { c.Phone, c.Email, c.User.Name }).ToListAsync());
+        //}
+
+        // GET: Contacts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +39,39 @@ namespace Echo_Merch.Controllers
                 return NotFound();
             }
 
-            var table2 = await _context.Table2
+            var contact = await _context.Contacts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (table2 == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(table2);
+            return View(contact);
         }
 
-        // GET: Table2/Create
+        // GET: Contacts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Table2/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,child_value")] Table2 table2)
+        public async Task<IActionResult> Create([Bind("Id,Email,Phone")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(table2);
+                _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(table2);
+            return View(contact);
         }
 
-        // GET: Table2/Edit/5
+        // GET: Contacts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +79,22 @@ namespace Echo_Merch.Controllers
                 return NotFound();
             }
 
-            var table2 = await _context.Table2.FindAsync(id);
-            if (table2 == null)
+            var contact = await _context.Contacts.FindAsync(id);
+            if (contact == null)
             {
                 return NotFound();
             }
-            return View(table2);
+            return View(contact);
         }
 
-        // POST: Table2/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,child_value")] Table2 table2)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Phone")] Contact contact)
         {
-            if (id != table2.Id)
+            if (id != contact.Id)
             {
                 return NotFound();
             }
@@ -96,12 +103,12 @@ namespace Echo_Merch.Controllers
             {
                 try
                 {
-                    _context.Update(table2);
+                    _context.Update(contact);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Table2Exists(table2.Id))
+                    if (!ContactExists(contact.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +119,10 @@ namespace Echo_Merch.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(table2);
+            return View(contact);
         }
 
-        // GET: Table2/Delete/5
+        // GET: Contacts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +130,34 @@ namespace Echo_Merch.Controllers
                 return NotFound();
             }
 
-            var table2 = await _context.Table2
+            var contact = await _context.Contacts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (table2 == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(table2);
+            return View(contact);
         }
 
-        // POST: Table2/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var table2 = await _context.Table2.FindAsync(id);
-            if (table2 != null)
+            var contact = await _context.Contacts.FindAsync(id);
+            if (contact != null)
             {
-                _context.Table2.Remove(table2);
+                _context.Contacts.Remove(contact);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool Table2Exists(int id)
+        private bool ContactExists(int id)
         {
-            return _context.Table2.Any(e => e.Id == id);
+            return _context.Contacts.Any(e => e.Id == id);
         }
     }
 }
