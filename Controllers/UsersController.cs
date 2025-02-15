@@ -22,39 +22,48 @@ namespace Echo_Merch.Controllers
         {
             _context = context;
         }
-        public int i = 15, ii = 7;
-        float ff = 8f;
 
+        public IActionResult Index()
+        {
+            int[] x = { 2, 4 };
+            int[] x2 = [2, 4];
+            int[] x3 = { 2, 4 };
+            int[] x4;
+            List<int> y = new List<int> { 1, 2, 3, 4, 5 };
+
+            Console.WriteLine(x);
+            return Ok("");
+        }
 
         // GET: Users
-        public async Task<IActionResult> Index()
-        {
-            //string query = @"SELECT * FROM Users u
-            //right  JOIN Contacts c ON u.Id = c.UserId";
+        //public async Task<IActionResult> Index()
+        //{
 
-            //var conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=test;Trusted_Connection=True;TrustServerCertificate=True;");
-            //conn.Open();
-            //SqlCommand command = new SqlCommand(query, conn);
-            //SqlDataReader reader = command.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    Console.WriteLine($"{reader["name"]} | {reader["Email"]}");
-            //}
-            //return Ok(reader);
+        //    //string query = @"SELECT * FROM Users u
+        //    //right  JOIN Contacts c ON u.Id = c.UserId";
 
-            //i = ii = 9;
-            //Console.WriteLine(i + "" + ii);
-            //return Ok("");
-
-            var l = _context.Users.ToList();
-            var l2 = l.Where(r => r.Username == "Username1").ToList();
-            return View(l);
+        //    //var conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=test;Trusted_Connection=True;TrustServerCertificate=True;");
+        //    //conn.Open();
+        //    //SqlCommand command = new SqlCommand(query, conn);
+        //    //SqlDataReader reader = command.ExecuteReader();
+        //    //while (reader.Read())
+        //    //{
+        //    //    Console.WriteLine($"{reader["name"]} | {reader["Email"]}");
+        //    //}
+        //    //return Ok(reader);
 
 
-            return View(await _context.Users.Include(u => u.Contact).ToListAsync());
-            return View(await _context.Users.Select(u => new UserDTO { Username = u.Username, Name = u.Name }).Include(u => u.Contact).ToListAsync());
-            return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
-        }
+        //    //return Ok("");
+
+        //    var l = _context.Users.Where(r => r.Username == "username1");
+        //    Console.WriteLine(_context.Users.Where(r => r.Username == "username1").Count());
+        //    return View(_context.Users.Where(r => r.Username == "username1"));
+
+
+        //    return View(await _context.Users.Include(u => u.Contact).ToListAsync());
+        //    return View(await _context.Users.Select(u => new UserDTO { Username = u.Username, Name = u.Name }).Include(u => u.Contact).ToListAsync());
+        //    return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
+        //}
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)

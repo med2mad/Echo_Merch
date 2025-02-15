@@ -16,4 +16,11 @@ public class ContextMerch : DbContext
     public DbSet<Echo_Merch.Models.User> Users { get; set; } = default!;
     public DbSet<Echo_Merch.Models.Contact> Contacts { get; set; } = default!;
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Contact>()
+            .HasOne(o => o.User)
+            .WithMany(c => c.Contact)
+            .OnDelete(DeleteBehavior.Cascade); // Automatically delete orders when a customer is deleted
+    }
 }

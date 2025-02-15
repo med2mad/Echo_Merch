@@ -20,16 +20,16 @@ namespace Echo_Merch.Controllers
             _context = context;
         }
 
+        //public IActionResult Index()
+        //{
+        //    var x = _context.Contacts.Include(c => c.User).ToList().ToArray();
+        //    return Ok(System.Text.Json.JsonSerializer.Serialize(x));
+        //}
+
         public IActionResult Index()
         {
-            var x = _context.Contacts.Include(c => c.User);
-            return Ok(System.Text.Json.JsonSerializer.Serialize(x, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+            return View(_context.Contacts.AsEnumerable());
         }
-
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Contacts.Include(c => c.User).Select(c => new { c.Phone, c.Email, c.User.Name }).ToListAsync());
-        //}
 
         // GET: Contacts/Details/5
         public async Task<IActionResult> Details(int? id)
