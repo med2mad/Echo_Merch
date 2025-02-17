@@ -16,6 +16,6 @@ var app = builder.Build();
 app.UseStaticFiles();
 //app.UseRouting();
 //app.MapControllers();
-app.MapControllerRoute(name: "default", pattern: "{controller=Contacts}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Users}/{action=Index}/{id?}");
 
 app.Run();

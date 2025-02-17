@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Echo_Merch.Migrations
 {
     [DbContext(typeof(ContextMerch))]
-    [Migration("20250209130741_m1")]
-    partial class m1
+    [Migration("20250216010218_m2")]
+    partial class m2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,15 +86,16 @@ namespace Echo_Merch.Migrations
             modelBuilder.Entity("Echo_Merch.Models.Contact", b =>
                 {
                     b.HasOne("Echo_Merch.Models.User", "User")
-                        .WithMany("Contact")
-                        .HasForeignKey("UserId");
+                        .WithMany("Contacts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Echo_Merch.Models.User", b =>
                 {
-                    b.Navigation("Contact");
+                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

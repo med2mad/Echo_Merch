@@ -9,5 +9,5 @@ public class User
     public string City { get; set; }
     public string Country { get; set; }
 
-    public ICollection<Contact> Contact { get; set; }
+    public ICollection<Contact> Contacts { get; set; }
 }

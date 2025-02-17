@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Echo_Merch.Controllers
@@ -25,42 +27,31 @@ namespace Echo_Merch.Controllers
 
         public IActionResult Index()
         {
-            int[] x = { 2, 4 };
-            int[] x2 = [2, 4];
-            int[] x3 = { 2, 4 };
-            int[] x4;
-            List<int> y = new List<int> { 1, 2, 3, 4, 5 };
+            f(arg1: 11, arg2: 22);
+            string[] zz = ["1", "2", "3"];
 
-            Console.WriteLine(x);
-            return Ok("");
+            zz.OrderBy(d => d);
+
+            List<int> y = new List<int>(4) { 1, 2, 3, 4 };
+
+            Console.WriteLine(y[1]);
+
+            return Ok(y.Max());
         }
-
+        void f(int arg1, int arg2)
+        {
+            Console.WriteLine("arg1:" + arg1 + " - arg2:" + arg2);
+        }
         // GET: Users
         //public async Task<IActionResult> Index()
         //{
+        //    var j = JsonSerializer.Serialize(_context.Users.Select(u => new { Name = u.Name, phone = u.Contacts.FirstOrDefault().Phone }));
 
-        //    //string query = @"SELECT * FROM Users u
-        //    //right  JOIN Contacts c ON u.Id = c.UserId";
+        //    //var v = await _context.Users.Select(u => new  { Name = "qqqq", Username = u.Password }).ToListAsync();
+        //    return Ok(j);
+        //    //return View(v);
 
-        //    //var conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=test;Trusted_Connection=True;TrustServerCertificate=True;");
-        //    //conn.Open();
-        //    //SqlCommand command = new SqlCommand(query, conn);
-        //    //SqlDataReader reader = command.ExecuteReader();
-        //    //while (reader.Read())
-        //    //{
-        //    //    Console.WriteLine($"{reader["name"]} | {reader["Email"]}");
-        //    //}
-        //    //return Ok(reader);
-
-
-        //    //return Ok("");
-
-        //    var l = _context.Users.Where(r => r.Username == "username1");
-        //    Console.WriteLine(_context.Users.Where(r => r.Username == "username1").Count());
-        //    return View(_context.Users.Where(r => r.Username == "username1"));
-
-
-        //    return View(await _context.Users.Include(u => u.Contact).ToListAsync());
+        //    return View(await _context.Users.Include(u => u.Contacts).ToListAsync());
         //    return View(await _context.Users.Select(u => new UserDTO { Username = u.Username, Name = u.Name }).Include(u => u.Contact).ToListAsync());
         //    return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
         //}
