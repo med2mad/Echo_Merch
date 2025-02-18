@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -25,36 +24,30 @@ namespace Echo_Merch.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
-        {
-            f(arg1: 11, arg2: 22);
-            string[] zz = ["1", "2", "3"];
-
-            zz.OrderBy(d => d);
-
-            List<int> y = new List<int>(4) { 1, 2, 3, 4 };
-
-            Console.WriteLine(y[1]);
-
-            return Ok(y.Max());
-        }
-        void f(int arg1, int arg2)
-        {
-            Console.WriteLine("arg1:" + arg1 + " - arg2:" + arg2);
-        }
-        // GET: Users
-        //public async Task<IActionResult> Index()
+        //public IActionResult Index()
         //{
-        //    var j = JsonSerializer.Serialize(_context.Users.Select(u => new { Name = u.Name, phone = u.Contacts.FirstOrDefault().Phone }));
+        //    string o = new String('s',3) {  };
 
-        //    //var v = await _context.Users.Select(u => new  { Name = "qqqq", Username = u.Password }).ToListAsync();
-        //    return Ok(j);
-        //    //return View(v);
+        //    Console.WriteLine(o);
 
-        //    return View(await _context.Users.Include(u => u.Contacts).ToListAsync());
-        //    return View(await _context.Users.Select(u => new UserDTO { Username = u.Username, Name = u.Name }).Include(u => u.Contact).ToListAsync());
-        //    return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
+        //    return Ok(o);
         //}
+
+        // GET: Users
+        public async Task<IActionResult> Index()
+        {
+
+            //var j = JsonSerializer.Serialize(_context.Users.Select(u => new { u.City }));
+
+            var v = await _context.Users.Select(u => new User(u.Password) { Name = "rrrreeeeexxxxx", }).ToListAsync();
+
+            //return Ok(j);
+            return View(v);
+
+            return View(await _context.Users.Include(u => u.Contacts).ToListAsync());
+            return View(await _context.Users.Select(u => new UserDTO { Username = u.Username, Name = u.Name }).Include(u => u.Contact).ToListAsync());
+            return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
+        }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
