@@ -36,17 +36,12 @@ namespace Echo_Merch.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
+            var zzzz = _context.Users.Select(u => new UserDTO());
 
-            //var j = JsonSerializer.Serialize(_context.Users.Select(u => new { u.City }));
+            return Ok(zzzz);
+            //return View(zzzz);
 
-            var v = await _context.Users.Select(u => new User(u.Password) { Name = "rrrreeeeexxxxx", }).ToListAsync();
-
-            //return Ok(j);
-            return View(v);
-
-            return View(await _context.Users.Include(u => u.Contacts).ToListAsync());
-            return View(await _context.Users.Select(u => new UserDTO { Username = u.Username, Name = u.Name }).Include(u => u.Contact).ToListAsync());
-            return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
+            //return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
         }
 
         // GET: Users/Details/5

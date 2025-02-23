@@ -28,7 +28,7 @@ namespace Echo_Merch.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Contacts.Skip(1).ToList().Skip(3));
+            return View(_context.Contacts.Include(u => u.User).ToList());
         }
 
         // GET: Contacts/Details/5
