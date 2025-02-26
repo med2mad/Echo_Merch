@@ -7,6 +7,7 @@ builder.Services.AddDbContext<ContextMerch>(options =>
 
 //builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 //if (!app.Environment.IsDevelopment())

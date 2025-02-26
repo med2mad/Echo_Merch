@@ -1,4 +1,6 @@
-﻿using Echo_Merch.Models;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Echo_Merch.Models;
 using Echo_Merch.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,10 +20,12 @@ namespace Echo_Merch.Controllers
     public class UsersController : Controller
     {
         private readonly ContextMerch _context;
+        private readonly IMapper _mapper;
 
-        public UsersController(ContextMerch context)
+        public UsersController(ContextMerch context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         //public IActionResult Index()
@@ -34,11 +38,11 @@ namespace Echo_Merch.Controllers
         //}
 
         // GET: Users
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var zzzz = _context.Users.Select(u => new UserDTO());
+            var l = _context.Users.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
 
-            return Ok(zzzz);
+            return Ok(l);
             //return View(zzzz);
 
             //return View(await (from u in _context.Users select new UserDTO { Username = u.Username, Name = u.Name }).ToListAsync());
