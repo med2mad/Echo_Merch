@@ -2,9 +2,9 @@
 
 namespace Echo_Merch.Models.DTOs;
 
-public class UserProfile : Profile
+public class MappingProfile : Profile
 {
-    public UserProfile()
+    public MappingProfile()
     {
         CreateMap<User, UserDTO>();
         CreateMap<Contact, ContactDTO>();

@@ -40,7 +40,10 @@ namespace Echo_Merch.Controllers
         // GET: Users
         public IActionResult Index()
         {
-            var l = _context.Users.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
+            //var l = _context.Users.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
+            var l = _context.Users.Select(u => u.zzzMethod());
+
+            string z = "sdf";
 
             return Ok(l);
             //return View(zzzz);
