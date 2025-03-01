@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Echo_Merch.Models.DTOs;
+namespace Echo_Merch.Models;
 
 public class MappingProfile : Profile
 {

@@ -1,8 +1,4 @@
-﻿using Echo_Merch.Data;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.OpenApi;
-using Microsoft.EntityFrameworkCore;
-namespace Echo_Merch.Models;
+﻿namespace Echo_Merch.Models;
 
 public class User
 {
@@ -16,3 +12,11 @@ public class User
     public ICollection<Contact> Contacts { get; set; }
 }
 
+
+public class UserDTO
+{
+    public string Name { get; set; }
+    public string Username { get; set; }
+
+    public ICollection<ContactDTO> Contacts { get; set; }
+}

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-
-namespace Echo_Merch.Models;
+﻿namespace Echo_Merch.Models;
 
 public class Contact
 {
@@ -12,4 +9,11 @@ public class Contact
     public string WhatsApp { get; set; }
 
     public User? User { get; set; }
+}
+
+
+public class ContactDTO
+{
+    public string Email { get; set; }
+    public string Phone { get; set; }
 }

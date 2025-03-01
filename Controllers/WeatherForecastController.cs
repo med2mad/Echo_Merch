@@ -2,7 +2,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
-using Echo_Merch.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +40,7 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IActionResult Get()
     {
-        var l = _context.Users.ProjectTo<User>(_mapper.ConfigurationProvider).ToList();
+        var l = _context.Users.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
 
         //var l = _context.Users.Select(u => new User { Name = u.Name, Username = u.Username }).ToList();
         return Ok(l);
