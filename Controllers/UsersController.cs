@@ -1,36 +1,73 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Echo_Merch.Data;
+using Echo_Merch.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Echo_Merch.Controllers;
-[Route("api/[controller]")]
+
+[Route("[controller]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
-    // GET: api/<UsersController>
+    private readonly ContextMerch _context;
+    private readonly IMapper _mapper;
+
+    public UsersController(ContextMerch context, IMapper mapper)
+    {
+        _context = context;
+        _mapper = mapper;
+    }
+
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IActionResult GetAll()
     {
-        return new string[] { "value1", "value2" };
+        var l = _context.Users.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
+        return Ok(l);
     }
 
-    // GET api/<UsersController>/5
+
     [HttpGet("{id}")]
-    public string Get(int id)
+    public IActionResult Get(int id)
     {
-        return "value";
+        var u = _context.Users.Find(id);
+        if (u is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(u);
     }
 
-    // POST api/<UsersController>
     [HttpPost]
-    public void Post([FromBody] string value)
+    public IActionResult Post([FromBody] AddUserDTO u)
     {
+        User newUser = AddUserDTO.Mapping(u);
+
+        _context.Users.Add(newUser);
+        _context.SaveChanges();
+
+        return Ok(newUser);
     }
 
-    // PUT api/<UsersController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    public IActionResult Put(int id, [FromBody] AddUserDTO argU)
     {
+        var u = _context.Users.Find(id);
+        if (u is null)
+        {
+            return NotFound();
+        }
+
+        u.Name = argU.Name;
+        u.Username = argU.Username;
+        u.Password = argU.Password;
+        u.City = argU.City;
+        u.Country = argU.Country;
+
+        _context.SaveChanges();
+
+        return Ok(u);
     }
 
     // DELETE api/<UsersController>/5

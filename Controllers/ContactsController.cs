@@ -2,11 +2,12 @@
 using AutoMapper.QueryableExtensions;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Echo_Merch.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class ContactsController : ControllerBase
 {
@@ -22,27 +23,47 @@ public class ContactsController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        var l = _context.Users.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
+        var l = _context.Contacts.ProjectTo<ContactDTO>(_mapper.ConfigurationProvider).ToList();
         return Ok(l);
     }
 
-    // GET api/<ContactsController>/5
     [HttpGet("{id}")]
-    public string Get(int id)
+    public IActionResult Get(int id)
     {
-        return "value";
+        var c = _context.Contacts.Find(id);
+        if (c is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(c);
     }
 
-    // POST api/<ContactsController>
     [HttpPost]
-    public void Post([FromBody] string value)
+    public IActionResult Post([FromBody] Contact c)
     {
+        _context.Contacts.Add(c);
+        _context.SaveChanges();
+
+        return Ok(c);
     }
 
-    // PUT api/<ContactsController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    public IActionResult Put(int id, [FromBody] Contact argC)
     {
+        var c = _context.Contacts.Find(id);
+        if (c is null)
+        {
+            return NotFound();
+        }
+
+        c.Phone = argC.Phone;
+        c.Email = argC.Email;
+        c.WhatsApp = argC.WhatsApp;
+        c.Mobile = argC.Mobile;
+        _context.SaveChanges();
+
+        return Ok(c);
     }
 
     // DELETE api/<ContactsController>/5

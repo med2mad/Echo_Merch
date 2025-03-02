@@ -20,3 +20,25 @@ public class UserDTO
 
     public ICollection<ContactDTO> Contacts { get; set; }
 }
+
+public class AddUserDTO
+{
+    public string Name { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string City { get; set; }
+    public string Country { get; set; }
+
+    public static User Mapping(AddUserDTO u)
+    {
+        return new User
+        {
+            Name = u.Name,
+            Username = u.Username,
+            Password = u.Password,
+            City = u.City,
+            Country = u.Country
+        };
+    }
+}
+
