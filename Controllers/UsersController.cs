@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Echo_Merch.Controllers;
 
-[Route("[controller]")]
-[ApiController]
+
+
 public class UsersController : ControllerBase
 {
     private readonly ContextMerch _context;
@@ -19,6 +19,7 @@ public class UsersController : ControllerBase
         _mapper = mapper;
     }
 
+    [Route("")]
     [HttpGet]
     public IActionResult GetAll()
     {
@@ -39,7 +40,7 @@ public class UsersController : ControllerBase
         return Ok(u);
     }
 
-    [HttpPost]
+    [HttpPost("")]
     public IActionResult Post([FromBody] AddUserDTO u)
     {
         User newUser = AddUserDTO.Mapping(u);
@@ -64,15 +65,23 @@ public class UsersController : ControllerBase
         u.Password = argU.Password;
         u.City = argU.City;
         u.Country = argU.Country;
-
         _context.SaveChanges();
 
         return Ok(u);
     }
 
-    // DELETE api/<UsersController>/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public IActionResult Delete(int id)
     {
+        var u = _context.Users.Find(id);
+        if (u is null)
+        {
+            return NotFound();
+        }
+
+        _context.Users.Remove(u);
+        _context.SaveChanges();
+
+        return Ok(u);
     }
 }

@@ -2,13 +2,12 @@
 using AutoMapper.QueryableExtensions;
 using Echo_Merch.Data;
 using Echo_Merch.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Echo_Merch.Controllers;
 
-[Route("[controller]")]
-[ApiController]
+
+
 public class ContactsController : ControllerBase
 {
     private readonly ContextMerch _context;
@@ -20,7 +19,7 @@ public class ContactsController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
+    [HttpGet("")]
     public IActionResult GetAll()
     {
         var l = _context.Contacts.ProjectTo<ContactDTO>(_mapper.ConfigurationProvider).ToList();
@@ -51,7 +50,7 @@ public class ContactsController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] Contact argC)
     {
-        var c = _context.Contacts.Find(id);
+        Contact? c = _context.Contacts.Find(id);
         if (c is null)
         {
             return NotFound();
@@ -60,7 +59,8 @@ public class ContactsController : ControllerBase
         c.Phone = argC.Phone;
         c.Email = argC.Email;
         c.WhatsApp = argC.WhatsApp;
-        c.Mobile = argC.Mobile;
+        c.address = argC.address;
+        c.UserId = argC.UserId;
         _context.SaveChanges();
 
         return Ok(c);
